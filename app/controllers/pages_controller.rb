@@ -4,7 +4,11 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    @pages = Page.all
+    @pages = if params[:search]
+               Page.search(params[:search]).records
+             else
+               Page.all
+             end
   end
 
   # GET /pages/1
