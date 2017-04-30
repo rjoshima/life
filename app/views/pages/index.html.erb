@@ -13,14 +13,17 @@
   </thead>
 
   <tbody>
+
+    <%= form_tag pages_path, :method => :get do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag 'Search', :name => nil %>
+    <% end %>
+
     <% @pages.each do |page| %>
       <tr>
         <td><%= page.url %></td>
         <td><%= page.title %></td>
         <td><%= page.content %></td>
-        <td><%= link_to 'Show', page %></td>
-        <td><%= link_to 'Edit', edit_page_path(page) %></td>
-        <td><%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
